@@ -27,15 +27,28 @@ app.get("/countries", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-	let valid = true;
-	for (const key in req.body) {
-		if (!validation(req.body[key].value, key)) {
-			valid = false;
+	const body = req.body;
+
+	//check if have all required fields
+	if (!validation.requires(body)) {
+		return res.send({
+			status: 422,
+			msg: "missing fields",
+		});
+	}
+	//iterate over fields and check validity
+	for (const key in body) {
+		if (!validation.values(body[key].value, key)) {
+			return res.send({
+				status: 422,
+				msg: "invalid fields",
+			});
 		}
 	}
+
 	return res.send({
-		status: valid ? 200 : 422,
-		msg: valid ? "valid" : "invalid",
+		status: 200,
+		msg: "valid",
 	});
 });
 

@@ -1,6 +1,6 @@
 const validation = (value, key) => {
 	const letters = /^[A-Za-z]+$/;
-	const lettersAndNums = /^[A-Za-z0-9]*$/;
+	const lettersAndNumsAndSpaces = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
 	const numbersOnly = /^[0-9]*$/;
 	const email = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	if (value.length < 1) {
@@ -11,7 +11,8 @@ const validation = (value, key) => {
 			return true;
 		case "street":
 		case "number":
-			return validateMatch(value, lettersAndNums);
+		case "city":
+			return validateMatch(value, lettersAndNumsAndSpaces);
 		case "email":
 			return validateMatch(String(value).toLowerCase(), email);
 		case "phone":
@@ -28,4 +29,57 @@ const validateMatch = (value, reg) => {
 	return true;
 };
 
-module.exports = validation;
+const requireObj = {
+	city: {
+		value: "tel aviv",
+		status: "valid",
+	},
+	country: {
+		value: "israel",
+		status: "valid",
+	},
+	email: {
+		value: "e@e.com",
+		status: "valid",
+	},
+	firstName: {
+		value: "Yeuda",
+		status: "valid",
+	},
+	lastName: {
+		value: "Witman",
+		status: "valid",
+	},
+	number: {
+		value: "3",
+		status: "valid",
+	},
+	phone: {
+		value: "05265549948",
+		status: "valid",
+	},
+	rememberMe: {
+		value: true,
+		status: "valid",
+	},
+	street: {
+		value: "ben gurion",
+		status: "valid",
+	},
+	title: {
+		value: "mr",
+		status: "valid",
+	},
+};
+
+const validateRequires = (obj) => {
+	for (const key in requireObj) {
+		console.log(obj);
+		if (!obj.hasOwnProperty(key)) {
+			return false;
+		}
+	}
+	return true;
+};
+
+module.exports = { values: validation, requires: validateRequires };
