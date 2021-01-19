@@ -11,8 +11,7 @@ const validation = (value, key) => {
 			return true;
 		case "street":
 		case "number":
-			// return validateMatch(value, lettersAndNums);
-			return false;
+			return validateMatch(value, lettersAndNums);
 		case "email":
 			return validateMatch(String(value).toLowerCase(), email);
 		case "phone":
