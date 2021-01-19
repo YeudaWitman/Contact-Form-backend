@@ -1,4 +1,4 @@
-# Simple backens to support contact form
+# Simple backend to support contact form
 
 ### The project support frontend you can find in [here](https://github.com/YeudaWitman/Contact-Form).
 
