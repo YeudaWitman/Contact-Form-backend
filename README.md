@@ -1,14 +1,17 @@
-# Getting Started with Create React App
+# Simple backens to support contact form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### The project support frontend you can find in [here](https://github.com/YeudaWitman/Contact-Form).
+
+---
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
-Runs the app in the development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Run the app in development mode with "nodemon"
 
-### The project need a backend you can find in [here](https://github.com/YeudaWitman/Contact-Form-backend).
+### `npm run start`
+
+Run the app
